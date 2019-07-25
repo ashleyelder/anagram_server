@@ -2,7 +2,10 @@ require 'json'
 require 'optparse'
 require 'net/http'
 
+
 class AnagramClient
+
+  
   def initialize(args=[])
     options = parse_opts(args)
 

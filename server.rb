@@ -6,6 +6,14 @@ require 'engtagger'
 
 set :port, 3000
 
+#configuring server to enable cors from any request
+configure do
+    enable :cross_origin
+  end
+  before do
+    response.headers['Access-Control-Allow-Origin'] = '*'
+  end
+
 redis = Redis.new
 filename = 'dictionary.txt'
 
@@ -170,3 +178,12 @@ get '/anagramsby/:size.json' do
 	# 404 used for nothing found that matched the request URI
 	{ anagrams: anagrams }.to_json
 end
+
+# options that can be set to control where requests are able to come from
+# can also control which requests are possible
+options "*" do
+    response.headers["Allow"] = "GET, PUT, POST, DELETE, OPTIONS"
+    response.headers["Access-Control-Allow-Headers"] = "Authorization, Content-Type, Accept, X-User-Email, X-Auth-Token"
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    200
+  end
