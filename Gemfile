@@ -3,5 +3,6 @@ source 'https://rubygems.org'
 gem 'sinatra'
 gem 'redis'
 gem 'pry'
-gem 'entagger'
+# changed entagger to be engtagger after searching rubygems.org
+gem 'engtagger'
 gem 'sinatra-cross_origin'
